@@ -1,0 +1,1 @@
+const r=require('express').Router(); const c=require('../controllers/xpController'); const m=require('../middleware/authMiddleware'); r.post('/add', m, c.addXP); module.exports=r;

@@ -1,0 +1,1 @@
+exports.setMode=async(req,res)=>{res.json({})}; exports.getMode=async(req,res)=>{res.json({})};

@@ -1,0 +1,1 @@
+exports.addXP=async(req,res)=>{res.json({})};exports.getStatus=async(req,res)=>{res.json({})};exports.getBadges=async(req,res)=>{res.json([])};

@@ -1,0 +1,8 @@
+PowerShell commands for user (Windows):
+1) Extrair o ZIP em: C:\Users\%USERNAME%\Desktop\ASDF
+2) Backend:
+   cd kairos-backend
+   npm install
+   node server.js
+3) Smoke Test:
+   .\run_local_validation.ps1

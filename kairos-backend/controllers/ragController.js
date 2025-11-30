@@ -1,0 +1,1 @@
+exports.consultLegal=async(req,res)=>{res.json({})};

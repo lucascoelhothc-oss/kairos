@@ -1,0 +1,1 @@
+const r=require('express').Router(); const c=require('../controllers/financeController'); const m=require('../middleware/authMiddleware'); r.post('/audit', m, c.runAudit); module.exports=r;

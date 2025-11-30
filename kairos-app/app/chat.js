@@ -1,0 +1,1 @@
+import {View,Text} from "react-native"; export default function C(){return <View style={{flex:1,backgroundColor:'#000',justifyContent:'center'}}><Text style={{color:'white',textAlign:'center'}}>Kairós Online</Text></View>}

@@ -1,0 +1,1 @@
+exports.createCheckoutSession=async(req,res)=>{res.json({url:'https://mock.com'})}; exports.webhookHandler=async(req,res)=>{res.json({received:true})};

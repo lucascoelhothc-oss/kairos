@@ -1,0 +1,1 @@
+const r=require('express').Router(); const c=require('../controllers/billingController'); const m=require('../middleware/authMiddleware'); r.post('/create-checkout-session', m, c.createCheckoutSession); module.exports=r;

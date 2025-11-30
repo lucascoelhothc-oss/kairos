@@ -1,0 +1,1 @@
+Frontend mantido na versão SDK 54.

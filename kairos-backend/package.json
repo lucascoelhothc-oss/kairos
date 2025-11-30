@@ -1,0 +1,33 @@
+{
+  "name": "kairos-backend",
+  "version": "3.9.4",
+  "main": "server.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "smoke": "node tests/smoke.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "helmet": "^7.1.0",
+    "express-rate-limit": "^7.1.5",
+    "pino": "^8.19.0",
+    "@supabase/supabase-js": "^2.39.7",
+    "openai": "^4.28.4",
+    "stripe": "^14.20.0",
+    "multer": "^1.4.5-lts.1",
+    "fs-extra": "^11.2.0",
+    "date-fns": "^3.6.0",
+    "simple-statistics": "^7.8.3",
+    "adm-zip": "^0.5.10",
+    "pdf-parse": "^1.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0",
+    "pino-pretty": "^10.3.1"
+  }
+}

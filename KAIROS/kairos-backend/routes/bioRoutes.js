@@ -1,0 +1,1 @@
+const r=require('express').Router(); const c=require('../controllers/bioController'); const m=require('../middleware/authMiddleware'); r.post('/log', m, c.saveLog); module.exports=r;

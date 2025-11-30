@@ -1,0 +1,1 @@
+const r=require('express').Router(); const c=require('../controllers/ragController'); const m=require('../middleware/authMiddleware'); r.post('/legal', m, c.consultLegal); module.exports=r;

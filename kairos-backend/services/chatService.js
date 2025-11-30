@@ -1,0 +1,1 @@
+exports.generateReply = async ({ message }) => { return { reply: "Mock Kairós: " + message, fallback: true }; };

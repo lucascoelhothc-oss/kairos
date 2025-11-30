@@ -1,0 +1,12 @@
+const r = require("express").Router();
+r.use("/auth", require("./authRoutes"));
+r.use("/chat", require("./chatRoutes"));
+r.use("/messages", require("./messageRoutes"));
+r.use("/voice", require("./voiceRoutes"));
+r.use("/billing", require("./billingRoutes"));
+r.use("/finance", require("./financeRoutes"));
+r.use("/bio", require("./bioRoutes"));
+r.use("/xp", require("./xpRoutes"));
+r.use("/settings", require("./settingsRoutes"));
+r.use("/rag", require("./ragRoutes"));
+module.exports = r;

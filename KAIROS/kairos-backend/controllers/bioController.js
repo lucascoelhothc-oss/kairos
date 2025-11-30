@@ -1,0 +1,1 @@
+exports.saveLog=async(req,res)=>{res.json({})};

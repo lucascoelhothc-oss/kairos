@@ -1,0 +1,1 @@
+exports.saveLog=async(req,res)=>{res.json({})};exports.getLogs=async(req,res)=>{res.json([])};exports.getInsights=async(req,res)=>{res.json({})};

@@ -1,0 +1,1 @@
+const r=require('express').Router(); const c=require('../controllers/settingsController'); const m=require('../middleware/authMiddleware'); r.get('/export', m, c.exportData); module.exports=r;

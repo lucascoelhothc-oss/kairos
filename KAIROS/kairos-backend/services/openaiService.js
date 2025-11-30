@@ -1,0 +1,1 @@
+module.exports = { callOpenAI: async()=>({text:"Mock"}) };

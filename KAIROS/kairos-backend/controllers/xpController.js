@@ -1,0 +1,1 @@
+exports.addXP=async(req,res)=>{res.json({})};

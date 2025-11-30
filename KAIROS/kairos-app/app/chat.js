@@ -1,0 +1,1 @@
+import {View,Text} from "react-native"; export default function C(){return <View><Text>Chat Kairós</Text></View>}

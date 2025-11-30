@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: kairos-backend
+    env: node
+    plan: free
+    buildCommand: "npm ci --only=production"
+    startCommand: "node server.js"
+    envVars:
+      - key: PORT
+        value: 10000

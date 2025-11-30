@@ -1,0 +1,1 @@
+const cs = require("../services/chatService"); exports.handleChat = async (req, res, next) => { try { const {reply, fallback} = await cs.generateReply({ message: req.body.message }); res.json({reply, fallback}); } catch (e) { next(e); } }; exports.getHistory = async (req, res) => res.json({ messages: [] });

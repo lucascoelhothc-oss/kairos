@@ -1,0 +1,1 @@
+exports.signup=async(req,res)=>{res.json({user:{id:'mock'},session:{}})}; exports.login=async(req,res)=>{res.json({user:{id:'mock'},session:{}})};

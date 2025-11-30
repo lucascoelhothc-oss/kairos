@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS landing_subscribers (id uuid PRIMARY KEY DEFAULT gen_random_uuid(), email text UNIQUE, created_at timestamptz DEFAULT now());

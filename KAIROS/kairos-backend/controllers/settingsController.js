@@ -1,0 +1,1 @@
+exports.exportData=async(req,res)=>{res.json({})};

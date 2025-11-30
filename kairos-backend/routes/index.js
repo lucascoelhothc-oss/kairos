@@ -1,0 +1,1 @@
+const r = require("express").Router(); r.use("/chat", require("./chatRoutes")); module.exports = r;

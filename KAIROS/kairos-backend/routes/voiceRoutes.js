@@ -1,0 +1,1 @@
+const r=require('express').Router(); const c=require('../controllers/voiceController'); const m=require('../middleware/authMiddleware'); const multer=require('multer'); const u=multer({dest:'tmp/audio/'}); r.post('/transcribe', m, u.single('audio'), c.transcribe); r.post('/speak', m, c.speak); module.exports=r;

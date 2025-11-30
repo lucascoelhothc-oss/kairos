@@ -1,0 +1,1 @@
+module.exports = async (req, res, next) => { req.auth = { user_id: 'mock' }; next(); };

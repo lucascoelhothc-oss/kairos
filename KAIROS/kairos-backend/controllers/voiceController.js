@@ -1,0 +1,1 @@
+exports.transcribe=async(req,res)=>{res.json({text:'Mock Audio'})}; exports.speak=async(req,res)=>{res.json({audio:'mock'})};

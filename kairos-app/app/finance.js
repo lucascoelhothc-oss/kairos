@@ -1,0 +1,1 @@
+import { View, Text } from "react-native"; export default function P(){return <View style={{flex:1,bg:'#050505',justifyContent:'center',alignItems:'center'}}><Text style={{color:'white'}}>Financeiro Em Breve</Text></View>}
