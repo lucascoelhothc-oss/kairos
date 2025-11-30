@@ -1,53 +1,11 @@
-﻿name: CI / Build / Push
-
-on:
-  push:
-    branches: [ "main", "master" ]
-  pull_request:
-    branches: [ "main", "master" ]
-
-jobs:
-  test-and-build:
-    runs-on: ubuntu-latest
-    env:
-      NODE_ENV: test
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Use Node.js 18.x
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run smoke tests
-        run: npm run smoke
-
-      - name: Login to GHCR (for container push)
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build and push Docker image to GHCR
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          push: true
-          tags: ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:latest
-
-      - name: Upload deploy artifact (zip + manifest + docs)
-        uses: actions/upload-artifact@v4
-        with:
-          name: kairos-deploy-zip
-          path: |
-            kairos-backend/**
-            kairos-app/**
-            landing/**
-            manifest.txt
-            README_DEPLOY.txt
+﻿      - name: Install dependencies
+        run: |
+          # Se existir package-lock.json (ou npm-shrinkwrap.json / yarn.lock) usa if [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ] || [ -f yarn.lock ]; then`n            npm ci --prefer-offline --no-audit --no-fund`n          else`n            npm install --no-audit --no-fund`n          fi; senão usa npm install
+          if [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ] || [ -f yarn.lock ]; then
+            echo "Lockfile found, running if [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ] || [ -f yarn.lock ]; then`n            npm ci --prefer-offline --no-audit --no-fund`n          else`n            npm install --no-audit --no-fund`n          fi"
+            if [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ] || [ -f yarn.lock ]; then`n            npm ci --prefer-offline --no-audit --no-fund`n          else`n            npm install --no-audit --no-fund`n          fi --prefer-offline --no-audit --no-fund
+          else
+            echo "No lockfile found, running npm install"
+            npm install --no-audit --no-fund
+          fi
+        shell: bash
