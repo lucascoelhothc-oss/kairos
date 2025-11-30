@@ -1,0 +1,166 @@
+﻿{
+    "files":  [
+                  {
+                      "path":  "CHANGELOG.md",
+                      "sha256":  "4320ccc36f8680979246a34217cba731865fc2e4bd1dc7cb1aec11abe2fb0d59",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  79
+                  },
+                  {
+                      "path":  "fixes_applied.log",
+                      "sha256":  "222de91400a76d7d8a328f6336adfefbfeef0d4aa1a638fec0aa64621ed3551f",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  218
+                  },
+                  {
+                      "path":  "manifest.txt",
+                      "sha256":  "c7ba1d88908b1a1441c0a1dfba9ecd5f9e7c661b40c3e9bd75a89dcae2e67c3e",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  783
+                  },
+                  {
+                      "path":  "post_extract_instructions.txt",
+                      "sha256":  "cdc1e34f16836618b15ba88297d5325a92433109bc912ee010e77c8ba59f4fce",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  205
+                  },
+                  {
+                      "path":  "README_DEPLOY.txt",
+                      "sha256":  "558c7fdf856259ecc32c06951dbfa1ea4f687d27fc1e82403f83692c83f57d3b",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  157
+                  },
+                  {
+                      "path":  "validation.log",
+                      "sha256":  "2b9a32f1ea1fe1710a9a3a402fdcaf366d2f700004c44ae20ecd62b5e8082dd3",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  137
+                  },
+                  {
+                      "path":  "kairos-app/package.json",
+                      "sha256":  "018038618785f993fee6d1995384f10d5105c4c739cb6818e457bdb2d874d50d",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  39
+                  },
+                  {
+                      "path":  "kairos-app/README.txt",
+                      "sha256":  "3a1d9e977f5739d84dcfbca755c5850d09b35b383cb540cd7e45b3eedd58d1e5",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  35
+                  },
+                  {
+                      "path":  "kairos-backend/.env.example",
+                      "sha256":  "1736ebc2498e123260f8b4e1ee87d84224657add41b846985136d4d208528cdb",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  168
+                  },
+                  {
+                      "path":  "kairos-backend/.gitignore",
+                      "sha256":  "6c11fab12b161431ed483a61deded89148db67f836360d81845bde0d8088c751",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  35
+                  },
+                  {
+                      "path":  "kairos-backend/Dockerfile",
+                      "sha256":  "b006f9ba511e9137c7b231e723465e9c30174b61c4f2c02a463c6c40e2e589e7",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  131
+                  },
+                  {
+                      "path":  "kairos-backend/package.json",
+                      "sha256":  "304470f1da14466ea4db0c5e3e02be7cca3f07db549b1389dede1e3a5c25add8",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  718
+                  },
+                  {
+                      "path":  "kairos-backend/render.yaml",
+                      "sha256":  "336797b5955ebe5ba245dc2515cd495f1d19050389c83f885ab5e2d9ae506b88",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  264
+                  },
+                  {
+                      "path":  "kairos-backend/run_local_validation.ps1",
+                      "sha256":  "85afd28a504782fd588c6cf66576a1487ec22cb0d6fefa026cd86cb0e688ed62",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  2452
+                  },
+                  {
+                      "path":  "kairos-backend/server.js",
+                      "sha256":  "324a35cd0d314609ef0b9228472fbbb1b5f3ce14cd8a9ddae234f2b64caae6ec",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  2445
+                  },
+                  {
+                      "path":  "kairos-backend/controllers/chatController.js",
+                      "sha256":  "70be96bb355559d005da65aafb288520d589acf4442f63b383c761a45c0605d5",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  308
+                  },
+                  {
+                      "path":  "kairos-backend/lib/logger.js",
+                      "sha256":  "7e8ee640844713057bef8b34d80b919d5ddb4a595865931ebea11ab75afb83ca",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  176
+                  },
+                  {
+                      "path":  "kairos-backend/middleware/authMiddleware.js",
+                      "sha256":  "1403b5d6288b99559b841a88a75d492b170c4ce9c8658ba7daf4f8e4b7f8329d",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  87
+                  },
+                  {
+                      "path":  "kairos-backend/routes/chatRoutes.js",
+                      "sha256":  "9ed81ee81cfb19a82de0bbdfc570ccb8382dd0613feae0fcb21b98e649b36163",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  227
+                  },
+                  {
+                      "path":  "kairos-backend/routes/index.js",
+                      "sha256":  "8e09fbc1c4322fc69457d4eec1178265c89ad6586eaddb6e3f362ab98c1522eb",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  99
+                  },
+                  {
+                      "path":  "kairos-backend/services/chatService.js",
+                      "sha256":  "79dd7f15ed18442477183f3fbb443a473491c6c0c84d0729dce615cc08c1a393",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  113
+                  },
+                  {
+                      "path":  "kairos-backend/services/supabaseClient.js",
+                      "sha256":  "be6bb6ee8de38c670e9cf26aa179c44fbcca7e4eb2f12f7757ec639a06bc4e66",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  589
+                  },
+                  {
+                      "path":  "kairos-backend/tests/smoke.js",
+                      "sha256":  "61d8c92e13a3fbe23a94a2ae0273d9f691979f8bbcafd156987d498e6eef12cd",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  1684
+                  },
+                  {
+                      "path":  "landing/index.html",
+                      "sha256":  "4031edcc7a228614e1a09d6401dd9601f7438c75b2a33efa7df4aa9c89116059",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  88
+                  },
+                  {
+                      "path":  "landing/main.js",
+                      "sha256":  "572f3b1c6660184f8bcbcd84c7899d0d0efe9dd96f9a884ed1c1c5663dd3505a",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  26
+                  },
+                  {
+                      "path":  "landing/styles.css",
+                      "sha256":  "0c902dc67de47f88016dfee1125de4c45d334af3b16be2afbdf417d71566f0fe",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  32
+                  },
+                  {
+                      "path":  "landing/assets/logo.png",
+                      "sha256":  "68a30a2ec809d60063fd0833422a15d2c2e0246c5995b99114095d741ee77847",
+                      "mtime":  "2025-11-30T04:40:58.0000000-04:00",
+                      "size":  1165
+                  }
+              ]
+}
