@@ -17,7 +17,11 @@ node -v > ..\node_version.txt 2>&1
 
 # 3. Install
 Write-Host "Installing dependencies..."
-cmd /c "npm install" 2>&1 | Out-File -Encoding utf8 ..\npm_install_output.log
+cmd /c "npm ci" 2>&1 | Out-File -Encoding utf8 ..\npm_ci_output.log
+if ($LASTEXITCODE -ne 0) { 
+    Write-Host "npm ci failed, trying install..."
+    cmd /c "npm install" 2>&1 | Out-File -Encoding utf8 ..\npm_install_output.log
+}
 
 # 4. Start Server
 $stdout = "..\server_startup.log"
