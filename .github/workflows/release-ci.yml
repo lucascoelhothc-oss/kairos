@@ -1,4 +1,4 @@
-name: Build, Test & Release Kairos
+﻿name: Build, Test & Release Kairos
 
 on:
   push:
@@ -49,11 +49,7 @@ jobs:
           done < <(find . -type f -print0)
           printf '\n] }\n' >> manifest.json.tmp
           # pretty print
-          python3 - <<'PY' 
-import json,sys
-tmp='manifest.json.tmp'
-print(json.dumps(json.load(open(tmp)), indent=2))
-PY > manifest.json
+                    python3 -c "import json,sys; print(json.dumps(json.load(open(\x27manifest.json.tmp\x27)), indent=2))" > manifest.json
           mv manifest.json ../manifest.json
           cd -
 
@@ -154,3 +150,4 @@ PY > manifest.json
           asset_content_type: text/plain
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
