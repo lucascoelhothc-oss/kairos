@@ -1,0 +1,156 @@
+name: Build, Test & Release Kairos
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build_and_release:
+    runs-on: ubuntu-latest
+    env:
+      BACKEND_DIR: kairos-backend
+    steps:
+      - name: Checkout repository (whole history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set Node.js (use LTS 18 for stability)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Prepare clean release payload
+        run: |
+          TAG=${GITHUB_REF##*/}
+          OUTDIR="release_payload_${TAG}"
+          rm -rf "$OUTDIR"
+          mkdir -p "$OUTDIR"
+          # copy repo except git artifacts, node_modules, and existing zips
+          rsync -a --exclude='.git' --exclude='node_modules' --exclude='.github' --exclude='*.zip' --exclude='*.sha256' ./ "$OUTDIR/"
+          echo "OUTDIR=$OUTDIR" >> $GITHUB_ENV
+
+      - name: Generate per-file manifest.json (SHA256)
+        run: |
+          cd "$OUTDIR"
+          echo '{ "files": [' > manifest.json.tmp
+          first=1
+          while IFS= read -r -d '' file; do
+            rel="${file#./}"
+            hash=$(sha256sum "$file" | awk '{print $1}')
+            size=$(stat -c%s "$file")
+            mtime=$(date -d @$(stat -c %Y "$file") --iso-8601=seconds)
+            if [ $first -eq 1 ]; then first=0; else printf ',' >> manifest.json.tmp; fi
+            printf '\n  { "path": "%s", "sha256": "%s", "size": %s, "mtime": "%s" }' "$rel" "$hash" "$size" "$mtime" >> manifest.json.tmp
+          done < <(find . -type f -print0)
+          printf '\n] }\n' >> manifest.json.tmp
+          # pretty print
+          python3 - <<'PY' 
+import json,sys
+tmp='manifest.json.tmp'
+print(json.dumps(json.load(open(tmp)), indent=2))
+PY > manifest.json
+          mv manifest.json ../manifest.json
+          cd -
+
+      - name: Create ZIP (clean payload)
+        run: |
+          TAG=${GITHUB_REF##*/}
+          OUTDIR=${OUTDIR}
+          ZIP_NAME="kairos-deploy-${TAG}.zip"
+          rm -f "${ZIP_NAME}"
+          cd "$OUTDIR"
+          zip -r "../${ZIP_NAME}" . -x "*/.DS_Store" -x "*/__pycache__/*"
+          cd -
+          echo "ZIP_NAME=${ZIP_NAME}" >> $GITHUB_ENV
+
+      - name: Compute ZIP SHA256
+        run: |
+          sha256sum "${ZIP_NAME}" | awk '{print $1"  "$2}' > "${ZIP_NAME}.sha256"
+          echo "SHA_FILE=${ZIP_NAME}.sha256" >> $GITHUB_ENV
+
+      - name: Install backend deps and run smoke tests
+        working-directory: ./${{ env.BACKEND_DIR }}
+        run: |
+          # prefer clean install; package-lock may not exist so allow fallback
+          if [ -f package-lock.json ]; then
+            npm ci --prefer-offline --no-audit --no-fund
+          else
+            npm install --no-audit --no-fund
+          fi
+          # start server in background and run smoke with timeout guard
+          node server.js & SERVER_PID=$!
+          # wait up to 60s for port 10000
+          timeout=60; waited=0; while ! ss -ltn "( sport = :10000 )" &>/dev/null && [ $waited -lt $timeout ]; do sleep 1; waited=$((waited+1)); done
+          # run smoke (smoke writes ../validation.log)
+          npm run smoke || true
+          # kill server
+          kill $SERVER_PID || true
+        env:
+          NODE_ENV: test
+
+      - name: Collect validation.log (if exists)
+        run: |
+          TAG=${GITHUB_REF##*/}
+          if [ -f "${OUTDIR}/${BACKEND_DIR}/../validation.log" ]; then
+            mv "${OUTDIR}/${BACKEND_DIR}/../validation.log" ./validation.log
+          elif [ -f "${OUTDIR}/${BACKEND_DIR}/validation.log" ]; then
+            mv "${OUTDIR}/${BACKEND_DIR}/validation.log" ./validation.log
+          fi
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: Release ${{ github.ref_name }}
+          body: |
+            Release automática gerada pelo workflow.
+            Tag: ${{ github.ref_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload ZIP to release
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ env.ZIP_NAME }}
+          asset_name: ${{ env.ZIP_NAME }}
+          asset_content_type: application/zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload SHA to release
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ env.SHA_FILE }}
+          asset_name: ${{ env.SHA_FILE }}
+          asset_content_type: text/plain
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload manifest.json to release
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: manifest.json
+          asset_name: manifest.json
+          asset_content_type: application/json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload validation.log (if present)
+        if: ${{ always() }}
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: validation.log
+          asset_name: validation.log
+          asset_content_type: text/plain
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
